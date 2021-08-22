@@ -6,5 +6,17 @@ output:
 ---
 
 
-Add some text and a figure describing myself.
+### Hello everyone!
+![Mask up, Athens!](/Users/algla/OneDrive/Desktop/MADA/hairsquares.jpg)
+
+### Education
+My name is Amanda Glatter, and I graduated from UGA with my **B.S. in Environmental Health** and a minor in Spanish in 2020. In addition, I studied abroad in Costa Rica in Fall 2018, which contributed to my background in Ecology and gave me my first research opportunity in 
+
+### Background
+I am currently a full time lab technician for Dr. Erin Lipp on the **Community Resistance in Athens Project**. I have been wanting to learn R for a long time in preparation for an **MPH in Epidemiology** and so I can offer more at my current job. My background is primarily in water quality research, but I also have experiences in policy research, environmental health regulation, and activism. I have a little experience in modeling data in R from contributing to quarterly reports at work. I have additional experience in statistics from my undergraduate research and various lab classes. I have been wanting to learn how to model data for a while because I understand 
+
+### Interests and Hobbies
+Outside of work and school, I enjoy listening to music and podcasts, yoga, cooking, traveling, playing guitar, and volunteering for the Upper Oconee Watershed Network.
+
+### Fun Facts
 
