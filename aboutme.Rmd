@@ -7,7 +7,7 @@ output:
 
 
 ### Hello everyone!
-![Mask up, Athens!](/Users/algla/OneDrive/Desktop/MADA/hairsquares.jpg)
+![Mask up, Athens!](https://drive.google.com/file/d/1nRIJ4rxOnwKpueMfbbeiYVfwW8LX2WrV/view?usp=sharing)
 
 ### Education
 My name is Amanda Glatter, and I graduated from UGA with my **B.S. in Environmental Health** and a minor in Spanish in 2020. In addition, I studied abroad in Costa Rica in Fall 2018, which contributed to my background in Ecology and gave me my first research opportunity in 
@@ -19,4 +19,7 @@ I am currently a full time lab technician for Dr. Erin Lipp on the **Community R
 Outside of work and school, I enjoy listening to music and podcasts, yoga, cooking, traveling, playing guitar, and volunteering for the Upper Oconee Watershed Network.
 
 ### Fun Facts
+When I was younger, I did some voiceover acting for commercials.
 
+### Link:
+The [Bachelor Analyst](https://twitter.com/bachelordata) twitter account  is an excellent representation of how data analysis can be incorporated into pop culture to both enhance the the viewing experience of the popular series, "The Bachelor," and identify shortcomings and discrimination within the show. @BachelorData shares beautiful analyses of the competition and episode breakdowns. In addition, this account sometimes identifies shortcomings of representation within the show. This account shows how data modeling can enhance experiences outside of academia. 
