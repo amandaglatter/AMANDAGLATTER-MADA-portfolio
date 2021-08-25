@@ -6,20 +6,37 @@ output:
 ---
 
 
-### Hello everyone!
-![Mask up, Athens!](https://drive.google.com/file/d/1nRIJ4rxOnwKpueMfbbeiYVfwW8LX2WrV/view?usp=sharing)
+## Amanda Glatter
+#### Lab Technician, B.S. Environmental Health
+<img src="hairsquares.jpg"
+style="float:right;padding-left:10px;"
+width=302.4
+height=403.2>
 
-### Education
-My name is Amanda Glatter, and I graduated from UGA with my **B.S. in Environmental Health** and a minor in Spanish in 2020. In addition, I studied abroad in Costa Rica in Fall 2018, which contributed to my background in Ecology and gave me my first research opportunity in 
+### My background
+I graduated from UGA in Spring of 2020 with my **B.S. in Environmental Health** and a minor in Spanish. I chose environmental health because it connected my mission for environmental protection with public health and social justice. Currently, I am a full time lab technician in Dr. Erin Lipp's lab working on the **Community Resistance in Athens Project** focused on examining the carriage rates of multi-drug resistant _E. coli_. During my undergraduate experience, I studied abroad in Costa Rica, where conducted independent resesarch on environmental _E. coli_ concentrations and gained a thorough background in ecology. Other experiences include volunteering in a lab at the Odum School of Ecology, founding Theta Nu Xi Multicultural Sorority, Inc., and interning at the Florida Department of Health and the Athens-Clarke County Water Conservation Office. I am in the process of applying to graduate school for a MPH in Epidemiology with a focus in infectious disease. My goal in graduate school is to gain the quantitative and analytical tools necessary to address global environmental health threats.
 
-### Background
-I am currently a full time lab technician for Dr. Erin Lipp on the **Community Resistance in Athens Project**. I have been wanting to learn R for a long time in preparation for an **MPH in Epidemiology** and so I can offer more at my current job. My background is primarily in water quality research, but I also have experiences in policy research, environmental health regulation, and activism. I have a little experience in modeling data in R from contributing to quarterly reports at work. I have additional experience in statistics from my undergraduate research and various lab classes. I have been wanting to learn how to model data for a while because I understand 
+### Statistical Experience and Goals
+I have used Microsoft Excel to model data from my undergraduate research and I have used R to model preliminary findings for my current position in the Lipp Lab. I have taken a few Code Academy courses in R, but I would consider myself a beginner level R user. A few of my goals for this course are to learn how to approach modeling large datasets and running statistical analyses.
 
 ### Interests and Hobbies
-Outside of work and school, I enjoy listening to music and podcasts, yoga, cooking, traveling, playing guitar, and volunteering for the Upper Oconee Watershed Network.
+Outside of work and school, I enjoy:
+
+* Yoga
+* Listening to music and podcasts
+* Cooking
+* Playing guitar
+* Volunteering for the Upper Oconee Watershed Network.
 
 ### Fun Facts
-When I was younger, I did some voiceover acting for commercials.
+I love theatre and I performed in several musicals in  college. When I was younger, I did some voiceover acting for commercials and was very involved in the drama department at school.
 
-### Link:
-The [Bachelor Analyst](https://twitter.com/bachelordata) twitter account  is an excellent representation of how data analysis can be incorporated into pop culture to both enhance the the viewing experience of the popular series, "The Bachelor," and identify shortcomings and discrimination within the show. @BachelorData shares beautiful analyses of the competition and episode breakdowns. In addition, this account sometimes identifies shortcomings of representation within the show. This account shows how data modeling can enhance experiences outside of academia. 
+### Link
+The [Bachelor Analyst](https://twitter.com/bachelordata) twitter account  is an excellent representation of how data analysis can be used as a tool to enhance the viewing experience of the popular reality TV show, "The Bachelor." @BachelorData shares beautiful analyses of the competition and episode breakdowns. In addition, this account sometimes identifies shortcomings of representation within the show. This account shows how data modeling can enhance experiences outside of academia and scientific research. 
+
+<img src="dress.jpg"
+style="float:left">
+
+<img src="screentime.jpg">
+
+<img src="race.jpg">
