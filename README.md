@@ -1,1 +1,1 @@
-# My website and data analysis portfolio
+# Amanda's website and data analysis portfolio

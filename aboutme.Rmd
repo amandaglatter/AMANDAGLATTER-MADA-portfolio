@@ -13,7 +13,7 @@ style="float:right;padding-left:10px;"
 width=302.4
 height=403.2>
 
-### My background
+### My Background
 I graduated from UGA in Spring of 2020 with my **B.S. in Environmental Health** and a minor in Spanish. I chose environmental health because it connected my mission for environmental protection with public health and social justice. Currently, I am a full time lab technician in Dr. Erin Lipp's lab working on the **Community Resistance in Athens Project** focused on examining the carriage rates of multi-drug resistant _E. coli_. During my undergraduate experience, I studied abroad in Costa Rica, where conducted independent resesarch on environmental _E. coli_ concentrations and gained a thorough background in ecology. Other experiences include volunteering in a lab at the Odum School of Ecology, founding Theta Nu Xi Multicultural Sorority, Inc., and interning at the Florida Department of Health and the Athens-Clarke County Water Conservation Office. I am in the process of applying to graduate school for a MPH in Epidemiology with a focus in infectious disease. My goal in graduate school is to gain the quantitative and analytical tools necessary to address global environmental health threats.
 
 ### Statistical Experience and Goals
