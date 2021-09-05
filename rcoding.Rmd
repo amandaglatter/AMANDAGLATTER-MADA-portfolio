@@ -5,6 +5,142 @@ output:
     toc: FALSE
 ---
 
-This will contain the future R coding exercise.
+#### Load packages  
+
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+#### Load dsLabs package  
+
+```{r}
+library(dslabs)
+```
+
+#### Look at the help file for the gapminder data.  
+
+```{r}
+help(gapminder)
+```
+
+#### Get an overview of the data structure of gapminder  
+
+```{r}
+str(gapminder)
+```
+
+#### Get a data summary of gapminder.
+
+```{r}
+summary(gapminder)
+```
+
+#### Determine gapminder's object type  
+
+```{r}
+class(gapminder)
+```
+
+#### Create new object called "africadata" that is a subset only containing African countries.  
+
+```{r}
+africadata <- subset(gapminder, continent == "Africa") 
+```
+
+#### Get an overview of the data structure of "africadata"  
+
+```{r}
+str(africadata)
+```
+
+#### Get a data summary of "africadata"  
+
+```{r}
+summary(africadata)
+```
+
+#### Create new variable in africadata that only contains infant mortality and life expectancy. Then get an overview of its data structure and get a data summary.  
+
+```{r}
+af_infant <- africadata[c("infant_mortality","life_expectancy")]
+str(af_infant)
+summary(af_infant)
+```
+
+#### Create new variable in africadata that only contains population and life expectancy. Then get an overview of its data structure and get a data summary.  
+
+```{r}
+af_pop <- africadata[c("population","life_expectancy")]
+str(af_pop)
+summary(af_pop)  
+```
+
+#### Plot life expectancy as a function of infant mortality.  
+
+```{r}
+af_infant_plot <- ggplot(af_infant, aes(x = log10(infant_mortality), y = life_expectancy)) + geom_point() + ggtitle("Life Expectancy vs. Infant Mortality in Africa") + xlab("Infant Mortality") + ylab("Life Expectancy")
+
+print(af_infant_plot)
+```
+
+#### Plot life expectancy as a function of population.  
+
+```{r}
+af_pop_plot <- ggplot(af_pop, aes(x = log10(population), y = life_expectancy)) + geom_point() + ggtitle("Population vs. Infant Mortality in Africa") + xlab("Population") + ylab("Life Expectancy")
+
+print(af_pop_plot)
+```
+
+#### Create a table that shows the African countries that shows the years that are unknown (have NA listed for) for infant mortality. This table adds up the total NAs for each year for infant_mortality. Then get an overview of its data structure and get a data summary.  
+
+```{r}
+af_infant_NA <- africadata %>% select(year, infant_mortality) %>% filter(is.na(infant_mortality)) %>% count(year) %>% arrange(desc(year))
+
+str(af_infant_NA)
+summary(af_infant_NA)
+```
+
+#### Extract the infant mortality information only for the year 2000. Then get an overview of its data structure and get a data summary.  
+
+```{r}
+infant_2000 <- africadata %>% subset(year==2000) %>% select(infant_mortality, life_expectancy)
+
+str(infant_2000)
+summary(infant_2000)
+```
+
+#### Create a graph of life expectancy vs infant mortality in Africa for the year 2000.   
+
+```{r}
+inf_2000_plot <- ggplot(infant_2000, aes(x = log10(infant_mortality), y = life_expectancy)) + geom_point() + ggtitle("Life Expectancy vs. Infant Mortality in Africa 2000") + xlab("Infant Mortality") + ylab("Life Expectancy")
+print(inf_2000_plot)
+```
+
+#### Create a graph of life expectancy vs population in Africa for the year 2000.   
+
+```{r}
+pop_2000 <- africadata %>% subset(year == 2000) %>% select(population, life_expectancy)
+
+pop_2000_plot <- pop_2000 %>% ggplot(aes(x = log10(population), y = life_expectancy)) + geom_point() + ggtitle("Population vs. Infant Mortality in Africa 2000") + xlab("Population") + ylab("Life Expectancy")
+print(pop_2000_plot)
+```
+
+#### Fit1: Create a simple fit in which life expectancy is the outcome and infant mortality is the predictor. Then get a data summary.  
+
+```{r}
+fit1 <- lm(life_expectancy ~ infant_mortality, data = infant_2000)
+summary(fit1)
+```
+
+#### Based on the p-values for fit1, I conclude that there is a statistically significant relationship between life expectancy and infant mortality for African countries in the year 2000.  
 
 
+#### Fit2: Create a simple fit in which life expectancy is the outcome and infant mortality is the predictor. Then get a data summary.   
+
+```{r}
+fit2 <- lm(life_expectancy ~ population, data = pop_2000)
+summary(fit2)
+```
+
+#### Based on the p-value for fit2, the relationship between the life expectancy and population of African countries in the year 2000 is not statistically significant.
