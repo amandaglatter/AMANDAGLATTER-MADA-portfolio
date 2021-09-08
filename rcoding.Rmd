@@ -144,3 +144,51 @@ summary(fit2)
 ```
 
 #### Based on the p-value for fit2, the relationship between the life expectancy and population of African countries in the year 2000 is not statistically significant.
+
+```{r}
+#### New Section: Gabriella Veytsel
+#### Additional Plots
+str(africadata)
+
+#Explore trend of life expectancy in Africa over time 
+africadata %>% 
+  ggplot(aes(x = year, y = life_expectancy)) + geom_point()
+
+#Break this down into regions
+africadata %>% 
+  ggplot(aes(x = year, y = life_expectancy, color = region)) + geom_point()
+  #Life expectancy looks like it's increasing for nearly every region of Africa over time 
+
+#And then by country within a region 
+africadata %>% 
+  filter(region == "Northern Africa") %>%
+  ggplot(aes(x = year, y = life_expectancy, color = country)) + geom_point()
+
+africadata %>% 
+  filter(region == "Southern Africa") %>%
+  ggplot(aes(x = year, y = life_expectancy, color = country)) + geom_point()
+```
+
+#### Additional Model
+```{r}
+#Life expectancy over time
+library(broom)
+gv_lm <- lm(life_expectancy~year, data = africadata)
+tidy(gv_lm) #convert summary output to table
+#In Africa, life expenctancy increases by 0.325 years per additional 1 year in time. This relationship is statistically significant (p-value = 2.37E-280).
+
+#However, there are certainly regional gaps (and country-level, etc.)
+
+NorthernAfrica <- africadata %>%
+  filter(region == "Northern Africa") 
+gv_lm_Northern <- lm(life_expectancy~year, data = NorthernAfrica)
+tidy(gv_lm_Northern)
+#For example, in Northern African countries, life expectancy increases by 0.49 years per additional 1 year in time. This relationship is statistically significant(p-value = 1.53E-113)
+
+SouthernAfrica <- africadata %>%
+  filter(region == "Southern Africa") 
+gv_lm_Southern <- lm(life_expectancy~year, data = SouthernAfrica)
+tidy(gv_lm_Southern) #convert summary output to table
+#On the other hand, in Southern African countries, life expectancy only increases by 0.05 years per additional 1 year in time. This relationship is statistically significant(p-value = 0.00927)
+```
+
