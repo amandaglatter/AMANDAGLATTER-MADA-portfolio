@@ -5,15 +5,26 @@ output:
     toc: FALSE
 ---
 
-This will contain the future visualization exercise.
+I will attempt to recreate the following graph:  
+
+[FiveThirtEight original source](https://fivethirtyeight.com/features/the-dallas-shooting-was-among-the-deadliest-for-police-in-u-s-history/)  
+
+[Repository](https://github.com/fivethirtyeight/data/tree/master/police-deaths) (I only used the cleaned data file)  
+
+![Original Graphic](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png)
+Load Libraries.
+
 ```{r}
 #load libraries
 library(tidyverse)
 library(ggplot2)
 library(here)
-library(png)
-library(imager)
 library(dplyr)
+```
+
+
+Load data.
+```{r}
 
 #Load data
 data_location <- here::here("data", "clean_data_538.csv")
@@ -22,14 +33,6 @@ data_location <- here::here("data", "clean_data_538.csv")
 data_538 <- read.csv(data_location)
 ```
 
-Next, we will use ggplot to recreate this graph:
-
-```{r}
-image_location <- here::here("images", "original_538.png")
-#og_image <- readPNG(image_location, native = TRUE, info = TRUE)
-og <- load.image(image_location)
-plot(og)
-```
 
 
 Let's start recreating this plot using ggplot2.
@@ -38,6 +41,8 @@ data_538 %>% ggplot(aes(x = year, fill = cause_short )) +
   geom_area(stat="bin")
 
 ```
+
+
 There are too many categories, so we have to refine the list down to aircraft accident, automobile accident, gunfire, gunfire (accidental), heart attack, motorcycle accident, struck by vehicle, terrorist attack, vehicular assault, and put the rest into the "other" category.
 
 It looks like we have a lot of wrangling and cleaning up to do; the basic ggplot won't cut it.  
@@ -133,12 +138,7 @@ print(DATAPLOT)
 
 There are still many problems with the plot I created. There are smaller issues like font, dimensions, border, and the inclusion of the arrow pointing to the spike in terrorist-caused deaths on 9/11. The largest issues is that the the actual data appears differently. For reference, here is the original graph again:
 
-```{r}
-image_location <- here::here("images", "original_538.png")
-#og_image <- readPNG(image_location, native = TRUE, info = TRUE)
-og <- load.image(image_location)
-plot(og)
-```
+![ ](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png)
 
 ![](here::here("images", "original_538.png"))
 The lines of the graph appear very different compared to the original graph. In the original, the "other" consistently holds the highest number of deaths, but on my graph, it is the lowest. The general shape of the lines look the same, but when you take a closer look, the quantities for each death cause are very different at each given time. 
