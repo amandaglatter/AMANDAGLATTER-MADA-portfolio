@@ -9,7 +9,9 @@ I will attempt to recreate the following graph:
 
 [FiveThirtEight original source](https://fivethirtyeight.com/features/the-dallas-shooting-was-among-the-deadliest-for-police-in-u-s-history/)  
 
-[Repository](https://github.com/fivethirtyeight/data/tree/master/police-deaths) (I only used the cleaned data file)  
+[538 Repository](https://github.com/fivethirtyeight/data/tree/master/police-deaths) (I only used the cleaned data file)  
+
+[My Repository](https://github.com/amandaglatter/AMANDAGLATTER-MADA-portfolio)
 
 ![Original Graphic](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png)
 Load Libraries.
