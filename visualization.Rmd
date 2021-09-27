@@ -22,6 +22,7 @@ library(tidyverse)
 library(ggplot2)
 library(here)
 library(dplyr)
+library(extrafont) #I found this package and it can be used to change fonts.
 ```
 
 
@@ -31,7 +32,7 @@ Load data.
 #Load data
 data_location <- here::here("data", "clean_data_538.csv")
 
-#Load data
+#Load data, sometimes you need to restart r or setwd for this to work
 data_538 <- read.csv(data_location)
 ```
 
@@ -39,17 +40,38 @@ data_538 <- read.csv(data_location)
 
 Let's start recreating this plot using ggplot2.
 ```{r}
-data_538 %>% ggplot(aes(x = year, fill = cause_short )) +
-  geom_area(stat="bin")
+
+data_538[['date']] <- as.POSIXct(data_538[['date']], format = "%Y-%m-%d")
+#^this is to convert the date category to an R friendly format.
+
+data_538 %>% ggplot(aes(x = date, fill = cause_short )) +
+  geom_area(stat="bin", bins = 214)
+
+```
+ 
+ 
+ 
+Here is another attempt only using the categories on the original figure, excluding the other category.
+```{r}
+
+data_538[['date']] <- as.POSIXct(data_538[['date']], format = "%Y-%m-%d")
+
+data_1_5 <- data_538 %>% filter(cause_short == c("Gunfire", "Automobile accident","Motorcycle accident","Heart attack", "Vehicular assault", "Struck by vehicle", "Struck by vehicle", "Gunfire (accidental)", "Aircraft accident", "Terrorist attack")) 
+
+data_1_5 %>% ggplot(aes(x = date, fill = cause_short )) +
+  geom_area(stat="bin", bins = 214)
 
 ```
 
 
-There are too many categories, so we have to refine the list down to aircraft accident, automobile accident, gunfire, gunfire (accidental), heart attack, motorcycle accident, struck by vehicle, terrorist attack, vehicular assault, and put the rest into the "other" category.
 
-It looks like we have a lot of wrangling and cleaning up to do; the basic ggplot won't cut it.  
+I'm not sure why the y axis is only in the tens here while it is in the 100s in the first graph.
 
-First, I am putting any cause that is not one of the listed causes into an "other" category. Next, I will reclassify the date column from column to dates. Then, I will change all the cause_short names so they are all capitalized like in the original image. I reorder the causes so they appear in the correct order on the legend. Then comes plotting!
+As previously stated, there are too many categories, so we have to refine the list down to aircraft accident, automobile accident, gunfire, gunfire (accidental), heart attack, motorcycle accident, struck by vehicle, terrorist attack, vehicular assault, and put the rest into the "other" category.
+
+It looks like we have a lot of wrangling and cleaning up to do.
+
+First, I am putting any cause that is not one of the listed causes into a separate "other" category. Next, I will reclassify the date column from column to dates. Then, I will change all the cause_short names so they are all capitalized like in the original image. I reorder the causes so they appear in the correct order on the legend. Then comes plotting!
 
 ```{r}
 #Creating "other" category from extra death causes
@@ -94,8 +116,12 @@ data_538_2[['date']] <- as.POSIXct(data_538_2[['date']], format = "%Y-%m-%d")
 
 data_538_2$cause_short <- data_538_2$cause_short %>% toupper()
 
+```
+
+```{r}
 #Reordering the cause_short categories so they appear in the correct order in the legend on the plot.
-data_538_2$cause_short <- factor(data_538_2$cause_short, levels = c("GUNFIRE","AUTOMOBILE ACCIDENT",
+data_538_order <- data_538_2
+data_538_order$cause_short <- factor(data_538_order$cause_short, levels = c("GUNFIRE","AUTOMOBILE ACCIDENT",
                                 "MOTORCYCLE ACCIDENT", "HEART ATTACK",
                                 "VEHICULAR ASSAULT",
                                 "STRUCK BY VEHICLE", 
@@ -105,11 +131,12 @@ data_538_2$cause_short <- factor(data_538_2$cause_short, levels = c("GUNFIRE","A
                                 "OTHER"))
 ```
 
+
 Now that we've wrangled, let's create the actual plot.
 ```{r}
 
 #Creating the plot
-DATAPLOT <- data_538_2 %>% ggplot(aes(x = date, fill = cause_short )) +
+DATAPLOT <- data_538_order %>% ggplot(aes(x = date, fill = cause_short, position = "dodge" )) +
   geom_area(stat="bin", bins=214) + 
   xlab("") + ylab("") + 
   scale_color_discrete(name = "") + 
@@ -126,7 +153,6 @@ DATAPLOT <- data_538_2 %>% ggplot(aes(x = date, fill = cause_short )) +
     legend.position = c(.2, .5)) +
   theme(legend.key = element_rect(fill = "grey")) +
   guides(color = guide_legend(override.aes = list(size = 4))) + 
-  
   scale_fill_manual(values=c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","thistle2", "black","grey75")) +
   theme( legend.title = element_blank(), panel.background = element_rect(fill = "snow1", color = "grey", size = 1)) +
   theme(panel.grid.major = element_line(color = "grey", size = .5), 
@@ -135,16 +161,68 @@ DATAPLOT <- data_538_2 %>% ggplot(aes(x = date, fill = cause_short )) +
 
 
 print(DATAPLOT)
-
 ```
 
-There are still many problems with the plot I created. There are smaller issues like font, dimensions, border, and the inclusion of the arrow pointing to the spike in terrorist-caused deaths on 9/11. The largest issues is that the the actual data appears differently. For reference, here is the original graph again:
 
-![ ](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png)
+There are still many problems with the plot I created. There are smaller issues like font, dimensions, border, and the inclusion of the arrow pointing to the spike in terrorist-caused deaths on 9/11. The largest issues is that the the actual data appears differently.   
+
+
+At this point, I have shared the above graph with classmates and have gotten feedback. I'm going to take their advice and try again. Now I'm going to continue to alter the figure's details, like changing the font of the axes to match the original.
+
+Here are some of the changes I plan to make: 
+
+* Using "plot.background" instead of "panel.background"
+
+* Remove minor gridlines
+
+* Make the gridline, legend, and background colors more accurate
+
+
+```{r}
+
+
+DATAPLOT1 <- data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, position = "dodge" 
+  )) + geom_area(stat="bin", bins=208) + 
+  xlab("") + 
+  ylab("") + 
+  scale_color_discrete(name = "") + 
+  scale_color_discrete() +
+  ggtitle("On-duty police officer deaths in the U.S.", 
+          subtitle = "By cause since 1791") + theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = c(.2, .6)) +
+  theme(panel.background = element_rect(fill = "#F0F0F0"),
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "#F0F0F0"),
+           legend.key = element_rect(fill = "grey86")) +
+  guides(color = guide_legend(override.aes = list(size = 4))) + 
+  scale_fill_manual(values=c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","thistle2", "black","grey75")) +
+  theme( legend.title = element_blank(), panel.grid.major = element_line(color = "grey"), plot.background = element_rect(color = "ivory")) +
+           
+  theme(legend.background = element_rect(fill="grey86", 
+                                  size=0.5, linetype="solid")) +
+  
+  annotate(geom = "text", x = as.Date("2001-09-11"), y = 305, label = "72 police\nofficers died\nin the 9/11 \nterrorist \nattacks", fontface="bold") + #adding 9/11 label
+  theme(aspect.ratio=4/5) +   scale_fill_manual("", 
+                                                breaks = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"),
+                                                values = c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","plum2", "black","grey75"),
+                                                labels = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"))
+
+```
+### Final Figure Comparison
+My figure:
+```{r}
+print(DATAPLOT1)
+```
+
+Original Figure:
+
+![ ](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png){width=50%}{center}
 
 ![](here::here("images", "original_538.png"))
-The lines of the graph appear very different compared to the original graph. In the original, the "other" consistently holds the highest number of deaths, but on my graph, it is the lowest. The general shape of the lines look the same, but when you take a closer look, the quantities for each death cause are very different at each given time. 
-*If anyone might know why it appears like this, please reply in the thread or DM me!* 
+
+I've played with this data a lot and I still do not know why it looks so different from the original figure.The lines of the graph appear very different compared to the original graph. In the original, the "other" consistently holds the highest number of deaths, but on my graph, it is the lowest. The gunfire category is consistently the lowest for the original, but is the highest in my version. The general shape of curve is about the same, but when you take a closer look, the quantities for each death cause are very different at each given time. 
+*If anyone might know why it appears like this, please reply in the slack thread or DM me!* 
 One possibility is that some of the categories (all listed below) were placed into one of the main categories (as written on the original legend) instead of into the "Other" category. However, that does not explain why the "other" category is so low on my recreated plot.
 
 All original categories for the causes of death in the "cause_short" column :
@@ -218,3 +296,70 @@ All original categories for the causes of death in the "cause_short" column :
 * Vehicular assault  
 
 * Weather/Natural disaster  
+
+
+### Additional Reflection
+
+The most significant thing I have realized from this assignment is how drastically changing the "bin" setting can alter our perception of the data. For example, here is a figure where the number of bins is 50:
+
+```{r}
+data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, #position = "dodge" )) +
+  )) + geom_area(stat="bin", bins=50) + 
+  xlab("") + 
+  ylab("") + 
+  scale_color_discrete(name = "") + 
+  scale_color_discrete() +
+  ggtitle("On-duty police officer deaths in the U.S.", 
+          subtitle = "By cause since 1791") + theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = c(.2, .6)) +
+  theme(panel.background = element_rect(fill = "#F0F0F0"),
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "#F0F0F0"),
+           legend.key = element_rect(fill = "grey86")) +
+  guides(color = guide_legend(override.aes = list(size = 4))) + 
+  scale_fill_manual(values=c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","thistle2", "black","grey75")) +
+  theme( legend.title = element_blank(), panel.grid.major = element_line(color = "grey"), plot.background = element_rect(color = "ivory")) +
+           
+  theme(legend.background = element_rect(fill="grey86", 
+                                  size=0.5, linetype="solid")) +
+  
+  annotate(geom = "text", x = as.Date("2001-09-11"), y = 305, label = "72 police\nofficers died\nin the 9/11 \nterrorist \nattacks", fontface="bold") + #adding 9/11 label
+  theme(aspect.ratio=4/5) +   scale_fill_manual("", 
+                                                breaks = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"),
+                                                values = c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","plum2", "black","grey75"),
+                                                labels = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"))
+
+```
+
+And here is the same figure but with 300 bins. You can easily see that the peaks are completely different:
+```{r}
+data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, #position = "dodge" )) +
+  )) + geom_area(stat="bin", bins=300) + 
+  xlab("") + 
+  ylab("") + 
+  scale_color_discrete(name = "") + 
+  scale_color_discrete() +
+  ggtitle("On-duty police officer deaths in the U.S.", 
+          subtitle = "By cause since 1791") + theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = c(.2, .6)) +
+  theme(panel.background = element_rect(fill = "#F0F0F0"),
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "#F0F0F0"),
+           legend.key = element_rect(fill = "grey86")) +
+  guides(color = guide_legend(override.aes = list(size = 4))) + 
+  scale_fill_manual(values=c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","thistle2", "black","grey75")) +
+  theme( legend.title = element_blank(), panel.grid.major = element_line(color = "grey"), plot.background = element_rect(color = "ivory")) +
+           
+  theme(legend.background = element_rect(fill="grey86", 
+                                  size=0.5, linetype="solid")) +
+  
+  annotate(geom = "text", x = as.Date("2001-09-11"), y = 305, label = "72 police\nofficers died\nin the 9/11 \nterrorist \nattacks", fontface="bold") + #adding 9/11 label
+  theme(aspect.ratio=4/5) +   scale_fill_manual("", 
+                                                breaks = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"),
+                                                values = c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","plum2", "black","grey75"),
+                                                labels = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"))
+```
+
+This is a dangerous tool that can make it very difficult to interpret data accurately unless you have the knowledge that the number of bins has been altered.
