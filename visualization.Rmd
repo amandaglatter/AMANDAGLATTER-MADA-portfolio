@@ -304,7 +304,7 @@ print(DATAPLOT2)
 
 Original Figure:
 
-![ ](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png){width=50%}{center}
+![ ](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png){width=50%}
 
 ![](here::here("images", "original_538.png"))
 
