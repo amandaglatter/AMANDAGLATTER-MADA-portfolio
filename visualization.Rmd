@@ -13,7 +13,9 @@ I will attempt to recreate the following graph:
 
 [My Repository](https://github.com/amandaglatter/AMANDAGLATTER-MADA-portfolio)
 
-![Original Graphic](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png)
+![Original Graphic](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png){width=50%}
+
+
 Load Libraries.
 
 ```{r}
