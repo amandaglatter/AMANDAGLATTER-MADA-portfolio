@@ -177,12 +177,13 @@ Here are some of the changes I plan to make:
 
 * Make the gridline, legend, and background colors more accurate
 
+* Make x value the year and y value the 
+
 
 ```{r}
 
-
-DATAPLOT1 <- data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, position = "dodge" 
-  )) + geom_area(stat="bin", bins=208) + 
+DATAPLOT1 <- data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, position = "dodge" )) +
+  geom_area(stat="bin", bins=214) + 
   xlab("") + 
   ylab("") + 
   scale_color_discrete(name = "") + 
@@ -215,151 +216,95 @@ My figure:
 print(DATAPLOT1)
 ```
 
+
+Okay, I'm not done quite yet. I think I have not wrangled my data well enough, and that is causing problems. 
+
+```{r}
+
+library(tidyr)
+
+#At this point, I need to sum up each death cause by year
+
+data_long <- data_538_2 %>% select(year, cause_short) %>% pivot_longer(
+  cols = cause_short,
+  names_to = "incident",
+  values_to = "Cause") %>%
+  group_by(year) %>% subset( select = c(year, Cause)) %>%
+  count(Cause, sort = TRUE) %>%
+  arrange(year)
+
+#I think I'm finally getting somewhere! Let's take a peak.
+
+head(data_long)
+
+#This is looking better.
+```
+
+Well. Now that I have PROPERLY wrangled my data, I think I can really start to make an accurate graph! Took long enough! 
+Changes for "DATAPLOT2"
+
+* I'm goint to use the same code as before but with the dataset "data_long".
+* x = year, y = n
+* Setting the x axis from 1800 to 2010.
+
+
+```{r}
+ 
+data_longx = data_long
+
+data_longx$Cause <- factor(data_longx$Cause , levels=c("OTHER","TERRORIST ATTACK", "AIRCRAFT ACCIDENT", "GUNFIRE (ACCIDENTAL)", "STRUCK BY VEHICLE", "VEHICULAR ASSAULT", "HEART ATTACK", "MOTORCYCLE ACCIDENT", "AUTOMOBILE ACCIDENT", "GUNFIRE") )
+
+
+DATAPLOT2 <- data_longx %>% ggplot(aes(x = year, y = n, fill = Cause )) +
+  geom_area() + 
+  xlab("") + 
+  ylab("") + 
+  scale_color_discrete(name = "") + 
+  scale_color_discrete() +
+  ggtitle("On-duty police officer deaths in the U.S.", 
+          subtitle = "By cause since 1791") + theme(
+    plot.title = element_text(face = "bold"),
+    legend.position = c(.2, .6)) +
+  theme(legend.key.size = unit(0.5, 'cm'), panel.background = element_rect(fill = "#F0F0F0"),
+        panel.grid.minor = element_blank(),
+        plot.background = element_rect(fill = "#F0F0F0"),
+           legend.key = element_rect(fill = "grey86")) +
+  guides(color = guide_legend(override.aes = list(size = 4))) +   scale_fill_manual(values=c("grey75", "black", "thistle2", "orange", "salmon","red", "lightgreen","chartreuse4", "lightblue2", "steelblue3")) +
+  theme( legend.title = element_blank(), panel.grid.major = element_line(color = "grey"), plot.background = element_rect(color = "ivory")) + 
+  theme(legend.background = element_rect(fill="grey86", 
+                                  size=0.5, linetype="solid")) +
+  
+  annotate(geom = "text",
+           x = 2001, 
+           y = 285, 
+           label = "72 police\nofficers died\nin the 9/11 \nterrorist \nattacks", fontface="bold",
+           size = 3) + #adding 9/11 label
+  theme(aspect.ratio=4/5)  +
+  scale_fill_manual("", 
+                                                breaks = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"),
+                                                values = c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","plum2", "black","grey75"),
+                                                labels = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"))  
+  
+```
+
+
+### FINAL PRODUCT COMPARISON!
+
+I think this is as close as it is going to get, and I'm feeling much better about the product. The key difference was using the factor function to change the stacking of the different areas and to use the dodge position instead of bins. Using the "scale_fill_manual" function was also incredibly helpful. To achieve this last visual I did end up wrangling more, using the functions "pivot_longer()", "group_by()", and "count()". I am not sure if this ended up being necessary, but I learned a lot in the process. 
+
+Dr. Handel and my peers were making suggestions that ultimately proved correct, namely changing the stacking of the areas. I am not surprised that they were correct, but I am surprised it took so long for me to understand what they meant. With trial and error, their advice became much more clear. I'm grateful to have such a perceptive team to offer their guidance!
+
+Here is my final product and the comparison to the original:
+
+```{r}
+
+print(DATAPLOT2)
+
+```
+
 Original Figure:
 
 ![ ](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png){width=50%}{center}
 
 ![](here::here("images", "original_538.png"))
 
-I've played with this data a lot and I still do not know why it looks so different from the original figure.The lines of the graph appear very different compared to the original graph. In the original, the "other" consistently holds the highest number of deaths, but on my graph, it is the lowest. The gunfire category is consistently the lowest for the original, but is the highest in my version. The general shape of curve is about the same, but when you take a closer look, the quantities for each death cause are very different at each given time. 
-*If anyone might know why it appears like this, please reply in the slack thread or DM me!* 
-One possibility is that some of the categories (all listed below) were placed into one of the main categories (as written on the original legend) instead of into the "Other" category. However, that does not explain why the "other" category is so low on my recreated plot.
-
-All original categories for the causes of death in the "cause_short" column :
-
-* Accidental  
-
-* Aircraft accident  
-
-* Animal related  
-
-* Asphyxiation  
-
-* Assualt  
-
-* Automobile accident  
-
-* Bicycle accident  
-
-* Boating accident  
-
-* Bomb  
-
-* Drowned  
-
-* Duty Related illness  
-
-* Electrocuted  
-
-* Explosion  
-
-* Exposure  
-
-* Exposure to Toxins  
-
-* Fall  
-
-* Fire  
-
-* Gunfire  
-
-* Gunfire (Accidental)  
-
-* Heart attack  
-
-* Heat exhaustion  
-
-* Motorcycle accident  
-
-* Poisoned  
-
-* Stabbed  
-
-* Struck by streetcar  
-
-* Struck by train  
-
-* Struck by vehicle   
-
-* Structure collapse  
-
-* Terrorist attack  
-
-* Train accident  
-
-* Training accident  
-
-* Unidentified  
-
-* Vehicle pursuit  
-
-* Vehicular assault  
-
-* Weather/Natural disaster  
-
-
-### Additional Reflection
-
-The most significant thing I have realized from this assignment is how drastically changing the "bin" setting can alter our perception of the data. For example, here is a figure where the number of bins is 50:
-
-```{r}
-data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, #position = "dodge" )) +
-  )) + geom_area(stat="bin", bins=50) + 
-  xlab("") + 
-  ylab("") + 
-  scale_color_discrete(name = "") + 
-  scale_color_discrete() +
-  ggtitle("On-duty police officer deaths in the U.S.", 
-          subtitle = "By cause since 1791") + theme(
-    plot.title = element_text(face = "bold"),
-    legend.position = c(.2, .6)) +
-  theme(panel.background = element_rect(fill = "#F0F0F0"),
-        panel.grid.minor = element_blank(),
-        plot.background = element_rect(fill = "#F0F0F0"),
-           legend.key = element_rect(fill = "grey86")) +
-  guides(color = guide_legend(override.aes = list(size = 4))) + 
-  scale_fill_manual(values=c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","thistle2", "black","grey75")) +
-  theme( legend.title = element_blank(), panel.grid.major = element_line(color = "grey"), plot.background = element_rect(color = "ivory")) +
-           
-  theme(legend.background = element_rect(fill="grey86", 
-                                  size=0.5, linetype="solid")) +
-  
-  annotate(geom = "text", x = as.Date("2001-09-11"), y = 305, label = "72 police\nofficers died\nin the 9/11 \nterrorist \nattacks", fontface="bold") + #adding 9/11 label
-  theme(aspect.ratio=4/5) +   scale_fill_manual("", 
-                                                breaks = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"),
-                                                values = c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","plum2", "black","grey75"),
-                                                labels = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"))
-
-```
-
-And here is the same figure but with 300 bins. You can easily see that the peaks are completely different:
-```{r}
-data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, #position = "dodge" )) +
-  )) + geom_area(stat="bin", bins=300) + 
-  xlab("") + 
-  ylab("") + 
-  scale_color_discrete(name = "") + 
-  scale_color_discrete() +
-  ggtitle("On-duty police officer deaths in the U.S.", 
-          subtitle = "By cause since 1791") + theme(
-    plot.title = element_text(face = "bold"),
-    legend.position = c(.2, .6)) +
-  theme(panel.background = element_rect(fill = "#F0F0F0"),
-        panel.grid.minor = element_blank(),
-        plot.background = element_rect(fill = "#F0F0F0"),
-           legend.key = element_rect(fill = "grey86")) +
-  guides(color = guide_legend(override.aes = list(size = 4))) + 
-  scale_fill_manual(values=c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","thistle2", "black","grey75")) +
-  theme( legend.title = element_blank(), panel.grid.major = element_line(color = "grey"), plot.background = element_rect(color = "ivory")) +
-           
-  theme(legend.background = element_rect(fill="grey86", 
-                                  size=0.5, linetype="solid")) +
-  
-  annotate(geom = "text", x = as.Date("2001-09-11"), y = 305, label = "72 police\nofficers died\nin the 9/11 \nterrorist \nattacks", fontface="bold") + #adding 9/11 label
-  theme(aspect.ratio=4/5) +   scale_fill_manual("", 
-                                                breaks = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"),
-                                                values = c("steelblue3", "lightblue2","chartreuse4", "lightgreen","red", "salmon", "orange","plum2", "black","grey75"),
-                                                labels = c("GUNFIRE", "AUTOMOBILE ACCIDENT","MOTORCYCLE ACCIDENT", "HEART ATTACK", "VEHICULAR ASSAULT","STRUCK BY VEHICLE","GUNFIRE (ACCIDENTAL)","AIRCRAFT ACCIDENT", "TERRORIST ATTACK","OTHER"))
-```
-
-This is a dangerous tool that can make it very difficult to interpret data accurately unless you have the knowledge that the number of bins has been altered.
