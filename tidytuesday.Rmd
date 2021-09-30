@@ -7,3 +7,153 @@ output:
 
 This will contain the future Tidy Tuesday exercise.
 
+Load in tidytuesday R package. Load additional packages.
+```{r}
+
+library(tidytuesdayR)
+library(tidyverse)
+library(ggplot2)
+library(here)
+library(nberwp) #As used in the tt creator's cleaning instructions.
+library(lubridate)
+library(tidyr)
+
+
+```
+
+Manually load in the data.
+
+```{r}
+papers <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-09-28/papers.csv')
+authors <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-09-28/authors.csv')
+programs <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-09-28/programs.csv')
+paper_authors <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-09-28/paper_authors.csv')
+paper_programs <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2021/2021-09-28/paper_programs.csv')
+
+```
+For my own reference, I am including the image of the dictionary below.
+
+<img src="tidydictionary.png">
+
+Code included in the repository to clean the data:
+```{r}
+
+joined_df <- left_join(papers, paper_authors) %>% 
+  left_join(authors) %>% 
+  left_join(paper_programs) %>% 
+  left_join(programs)%>% 
+  mutate(
+    catalogue_group = str_sub(paper, 1, 1),
+    catalogue_group = case_when(
+      catalogue_group == "h" ~ "Historical",
+      catalogue_group == "t" ~ "Technical",
+      catalogue_group == "w" ~ "General"
+    ),
+    .after = paper
+  ) 
+
+joined_df
+```
+I want to clean this a little further. I am going to use the lubridate package to create an additional column that has both the month and year.
+```{r}
+
+
+```
+
+
+
+
+Brainstorming:
+
+* Join dates into one column using lubridate
+* Pie chart of programs
+* How did the number of papers change over time for each program?
+
+
+```{r}
+joined_df$month_year <- as.Date(with(joined_df, paste(month, year,sep="-")), "%m-%y")
+##This is not working, I'll come back to it later.
+```
+
+
+First, I want to see how things have 
+
+joined_df %>% ggplot(aes(x=year, y= ))
+
+```{r}
+cat_over_time <- joined_df %>% subset(select = c(year,program_category)) %>% drop_na() %>% 
+  group_by(year) %>%  count(program_category, sort = TRUE) %>% group_by(year) %>% arrange(year)
+
+#plot over time by program category. 
+plot_cot1 <- cat_over_time %>% ggplot(aes(x = year, y = n, color = program_category)) + 
+  geom_line() +
+  xlab("Year") + 
+  ylab("Number of Articles") +
+  ggtitle("Articles over Time (1)")
+plot_cot1
+```
+
+Looking at this graph, one of the first things I noticed was the large spike in all papers in 2020, so I went back and looked at the data (joined_df). I noticed some interesting repeat observations. For example, the paper ID w21817 (published in 2015) was listed six times with three different authors, each listed twice. I am not sure why, so I am going to look back at the descriptions. This also makes me realize that the above graph is _misleading and false_, and therefore if I really want to see how many papers were published each year for each category, I need to group by paper ID.
+
+I also realized that it may not be a good idea to drop the NA category completely, because it kind of looks like there were less published articles in a given year, but in reality, we are just focusing on the category
+
+*Starting again*
+
+Here I am selecting the year, paper, and program category and filtering out any repeat observations/any repeat rows that have the same paper, year, and category.
+```{r}
+#cot stands for category over time. 
+cot_id_ungrouped <- joined_df %>% subset(
+  select = c(paper, year, program_category)) %>%
+  group_by(paper) %>% distinct()
+
+glimpse(cot_id_ungrouped)
+
+cot_id <- cot_id_ungrouped %>% group_by(year) %>% count(
+  program_category, sort = TRUE) %>% arrange(year)
+```
+
+
+*Upon looking at this data, I have now noticed that some papers have multiple categories. For example, w0317 from 1979 was both in the macro/international category and had a separate entry for the micro category, I will return to this observation, but first I want to see how the graph differs from the original.*
+
+```{r}
+
+plot_cot2 <- cot_id %>% ggplot(aes(x=year, y=n, color = program_category)) +
+  geom_line() +
+  xlab("Year") +
+  ylab("Number of Articles Published") +
+  ggtitle("Articles over Time (2)")
+
+#Let's compare the first plot and the new plot.
+plot_cot1
+plot_cot2
+```
+
+The maximum value on the y axis of the new plot is around 1/6 the original peak, so it seems like a good thing I caught the repetition of paper IDs!
+
+_New questions/thoughts:_
+
+* What about the NA ids? Should I just drop them and have an additional line for total papers?
+* How can I address papers in multiple categories? (Note to self)
+
+
+Another thing I am realizing is- why do we care about the category above? I don't really care on intial observation, so I am going to reroute and try to ask a question that is more interesting but would require the same type of graph as above: focusing on the "program_desc" category is more specific and detailed.
+
+```{r}
+#pot = program over time
+pot_id_ungrouped <- joined_df %>% subset(
+  select = c(paper, year, program_desc)) %>%
+  group_by(paper) %>% distinct()
+
+pot_id <- pot_id_ungrouped %>% group_by(year) %>% count(
+  program_desc, sort = TRUE) %>% arrange(year)
+
+
+pot_plot <- pot_id %>% ggplot(aes(x=year,y=n, color = program_desc)) + 
+  geom_line()
+pot_plot
+
+```
+
+This is quite busy and therefore not super informative. _How can I strike a balance between too few and too many categories?_ Maybe I will answer this later.
+
+I want to ask a question that doesn't have to do with time. I have worked a lot with 

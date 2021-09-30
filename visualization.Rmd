@@ -179,8 +179,6 @@ Here are some of the changes I plan to make:
 
 * Make the gridline, legend, and background colors more accurate
 
-* Make x value the year and y value the 
-
 
 ```{r}
 
@@ -237,7 +235,7 @@ data_long <- data_538_2 %>% select(year, cause_short) %>% pivot_longer(
 
 #I think I'm finally getting somewhere! Let's take a peak.
 
-head(data_long)
+print(data_long)
 
 #This is looking better.
 ```
