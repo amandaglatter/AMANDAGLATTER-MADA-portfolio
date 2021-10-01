@@ -149,7 +149,7 @@ pot_id <- pot_id_ungrouped %>% group_by(year) %>% count(
 
 
 pot_plot <- pot_id %>% ggplot(aes(x=year,y=n, color = program_desc)) + 
-  geom_line()
+  geom_line() + theme(legend.key.size = unit(0.2, 'cm'), legend.position = c(.4, .8))
 pot_plot
 
 ```
@@ -157,3 +157,42 @@ pot_plot
 This is quite busy and therefore not super informative. _How can I strike a balance between too few and too many categories?_ Maybe I will answer this later.
 
 I want to ask a question that doesn't have to do with time. I have worked a lot with 
+
+
+Another question I have is if there is a year that is a month that is most popular for publishing. This could have implications about the fiscal year and pressure to publish. This could be done with a dot plot, or maybe a series of box and whisker plots. I will try the box and whisker plot.
+Actually, since year isn't a discrete variable, I will try something else. 
+
+```{r}
+popmonth <- joined_df %>% subset(select = c(paper, year, month)) %>% group_by(paper) %>% distinct()
+
+#popmonth$month <- popmonth$month %>% as.character() #Because the number under "month" indicates a month and not an actual number, It may be easier to work with if it is not read as a number.
+
+popmonth_count <- popmonth %>% group_by(year) %>% count(month, sort = TRUE) 
+#^At this point, we have the data arranged by year and number of papers published per month of a given year. I think the best way to 
+
+popmonth_plot <- popmonth_count %>% ggplot(aes(x = year, y = month, group = n)) + geom_count()
+
+popmonth_plot
+
+#This is not giving any information. This is because of the range of years is too vast. I'll just focus on 2010-2020. 
+
+lastdecade_popmonth <- popmonth_count[ which(popmonth_count$year >= 2010), ]
+
+ldpm_plot <- lastdecade_popmonth %>% ggplot(aes(x=year, y=month, color=n, size = n)) + geom_count(alpha = 1)
+
+ldpm_plot
+```
+
+
+I don't like this, it is not informative. I'm going to take a different approach. I think we don't need to look at year quite yet. Instead, let's try making x the month and y the number of papers. We can do this for all data up to 2020, since 2021 does not have papers printed through the end of the year.
+
+```{r}
+popmonth$month <- popmonth$month %>% as.character() %>% factor(levels = c("10", "11", "12", "1", "2", "3", "4", "5", "6", "7", "8", "9"))
+#I am arranging in this order because the fiscal year starts in October (10) and ends in September (9).
+
+popmonth %>% ggplot(aes(x = month)) + geom_bar() + coord_cartesian(ylim = c(2000,3000))
+
+
+```
+
+This does not tell us very much either. I will try to make a more specific question if I have time.
