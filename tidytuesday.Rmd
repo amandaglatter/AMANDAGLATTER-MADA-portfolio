@@ -195,4 +195,4 @@ popmonth %>% ggplot(aes(x = month)) + geom_bar() + coord_cartesian(ylim = c(2000
 
 ```
 
-This does not tell us very much either. I will try to make a more specific question if I have time.
+This kind of looks like a trend- we can see towards the end of fiscal quarters (every three months), there is a spike in number of papers published.
