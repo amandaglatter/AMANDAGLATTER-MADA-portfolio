@@ -1,0 +1,10 @@
+---
+title: "Tidy Tuesday"
+output: 
+  html_document:
+    toc: FALSE
+---
+
+This will contain the future Tidy Tuesday exercise.
+
+Load in tidytuesday R package. Load additional packages.
