@@ -5,11 +5,11 @@ output:
     toc: FALSE
 ---
 
-# Hello
+# Welcome!
 
-### And hello again
+### Sit back, relax, and enjoy the code.🍿
 
-Welcome to **my website** and _data analysis portfolio._ 
+I'm Amanda, and welcome to **my website** and _data analysis portfolio._ 
 
 
 * Please use the `Menu Bar` above to look around.
