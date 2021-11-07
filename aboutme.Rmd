@@ -35,8 +35,50 @@ I love theatre and I performed in several musicals in  college. When I was young
 The [Bachelor Analyst](https://twitter.com/bachelordata) twitter account  is an excellent representation of how data analysis can be used as a tool to enhance the viewing experience of the popular reality TV show, "The Bachelor." @BachelorData shares beautiful analyses of the competition and breaks down each episode by activity and air times of contestants. In addition, this account  identifies shortcomings of representation within the show. This  shows how data modeling can enhance experiences outside of academia and scientific research. 
 
 
-<img src="dress.jpg">
+<img src="dress.jpg"
+     width="270" 
+     height="270" />
+     
+<img src="race.jpg"
+     width="270" 
+     height="270" />
+     
+     
+     
+##############################################
+(The following code is a work in progress as of 11/7/21, I appreciate your patience as we are under construction!)
+<html>
+<head>
+<style>
+* {
+  box-sizing: border-box;
+}
 
-<img src="screentime.jpg">
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
 
-<img src="race.jpg">
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+</style>
+</head>
+<body>
+
+
+<div class="row">
+  <div class="column">
+    <img src="dress.jpg" alt="Snow" style="width:100%">
+  </div>
+  <div class="column">
+    <img src="race.jpg" alt="Forest" style="width:100%">
+  </div>
+</div>
+
+</body>
+</html>
