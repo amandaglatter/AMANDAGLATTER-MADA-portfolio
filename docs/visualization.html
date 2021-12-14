@@ -43,99 +43,6 @@
     </style>
 
 
-<style type="text/css">
-  code {
-    white-space: pre;
-  }
-  .sourceCode {
-    overflow: visible;
-  }
-</style>
-<style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  { color: #cccccc; background-color: #303030; }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ffcfaf; } /* Alert */
-code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
-code span.at { } /* Attribute */
-code span.bn { color: #dca3a3; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #f0dfaf; } /* ControlFlow */
-code span.ch { color: #dca3a3; } /* Char */
-code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
-code span.co { color: #7f9f7f; } /* Comment */
-code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
-code span.do { color: #7f9f7f; } /* Documentation */
-code span.dt { color: #dfdfbf; } /* DataType */
-code span.dv { color: #dcdccc; } /* DecVal */
-code span.er { color: #c3bf9f; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #c0bed1; } /* Float */
-code span.fu { color: #efef8f; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
-code span.kw { color: #f0dfaf; } /* Keyword */
-code span.op { color: #f0efd0; } /* Operator */
-code span.ot { color: #efef8f; } /* Other */
-code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
-code span.sc { color: #dca3a3; } /* SpecialChar */
-code span.ss { color: #cc9393; } /* SpecialString */
-code span.st { color: #cc9393; } /* String */
-code span.va { } /* Variable */
-code span.vs { color: #cc9393; } /* VerbatimString */
-code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
-</script>
 
 
 
@@ -343,12 +250,15 @@ $(document).ready(function () {
     <li>
       <a href="./tidytuesday.html">Tidy Tuesday</a>
     </li>
+    <li>
+      <a href="./tidytuesday_exercise2.html">Tidy Tuesday 2</a>
+    </li>
   </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="URL-TO-THIS-REPOSITORY-HERE">
+  <a href="https://github.com/amandaglatter/AMANDAGLATTER-MADA-portfolio">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -376,127 +286,33 @@ $(document).ready(function () {
 <p class="caption">Original Graphic</p>
 </div>
 <p>Load Libraries.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#load libraries</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.0 --</code></pre>
-<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
-## v tibble  3.0.6     v dplyr   1.0.4
-## v tidyr   1.1.2     v stringr 1.4.0
+<pre><code>## Warning: package &#39;tidyverse&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.3.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.5     v purrr   0.3.4
+## v tibble  3.1.5     v dplyr   1.0.7
+## v tidyr   1.1.4     v stringr 1.4.0
 ## v readr   1.4.0     v forcats 0.5.1</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## Warning: package &#39;tibble&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.0.5</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.5</code></pre>
 <pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span></code></pre></div>
 <pre><code>## Warning: package &#39;here&#39; was built under R version 4.0.5</code></pre>
 <pre><code>## here() starts at C:/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(extrafont) <span class="co">#I found this package and it can be used to change fonts.</span></span></code></pre></div>
 <pre><code>## Warning: package &#39;extrafont&#39; was built under R version 4.0.5</code></pre>
 <pre><code>## Registering fonts with R</code></pre>
 <p>Load data.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Load data</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>data_location <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">&quot;data&quot;</span>, <span class="st">&quot;clean_data_538.csv&quot;</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Load data, sometimes you need to restart r or setwd for this to work</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>data_538 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(data_location)</span></code></pre></div>
-<p>Let’s start recreating this plot using ggplot2.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data_538[[<span class="st">&#39;date&#39;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(data_538[[<span class="st">&#39;date&#39;</span>]], <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#^this is to convert the date category to an R friendly format.</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>data_538 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">fill =</span> cause_short )) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat=</span><span class="st">&quot;bin&quot;</span>, <span class="at">bins =</span> <span class="dv">214</span>)</span></code></pre></div>
-<p><img src="visualization_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p>Here is another attempt only using the categories on the original figure, excluding the other category.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_538[[<span class="st">&#39;date&#39;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(data_538[[<span class="st">&#39;date&#39;</span>]], <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>data_1_5 <span class="ot">&lt;-</span> data_538 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(cause_short <span class="sc">==</span> <span class="fu">c</span>(<span class="st">&quot;Gunfire&quot;</span>, <span class="st">&quot;Automobile accident&quot;</span>,<span class="st">&quot;Motorcycle accident&quot;</span>,<span class="st">&quot;Heart attack&quot;</span>, <span class="st">&quot;Vehicular assault&quot;</span>, <span class="st">&quot;Struck by vehicle&quot;</span>, <span class="st">&quot;Struck by vehicle&quot;</span>, <span class="st">&quot;Gunfire (accidental)&quot;</span>, <span class="st">&quot;Aircraft accident&quot;</span>, <span class="st">&quot;Terrorist attack&quot;</span>)) </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>data_1_5 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">fill =</span> cause_short )) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat=</span><span class="st">&quot;bin&quot;</span>, <span class="at">bins =</span> <span class="dv">214</span>)</span></code></pre></div>
-<p><img src="visualization_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Let’s start recreating this plot using ggplot2. <img src="visualization_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Here is another attempt only using the categories on the original figure, excluding the other category. <img src="visualization_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>I’m not sure why the y axis is only in the tens here while it is in the 100s in the first graph.</p>
 <p>As previously stated, there are too many categories, so we have to refine the list down to aircraft accident, automobile accident, gunfire, gunfire (accidental), heart attack, motorcycle accident, struck by vehicle, terrorist attack, vehicular assault, and put the rest into the “other” category.</p>
 <p>It looks like we have a lot of wrangling and cleaning up to do.</p>
 <p>First, I am putting any cause that is not one of the listed causes into a separate “other” category. Next, I will reclassify the date column from column to dates. Then, I will change all the cause_short names so they are all capitalized like in the original image. I reorder the causes so they appear in the correct order on the legend. Then comes plotting!</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating &quot;other&quot; category from extra death causes</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>data_538_2 <span class="ot">&lt;-</span> data_538 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">cause_short =</span> <span class="fu">case_when</span>(</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Accidental&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Animal related&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Asphyxiation&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Assault&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Bicycle accident&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Boating accident&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Bomb&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Drowned&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Duty Related illness&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Electrocuted&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Explosion&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Exposure&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Exposure to toxins&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Fall&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Fire&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Heat exhaustion&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Poisoned&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Stabbed&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Struck by streetcar&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Struck by train&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Structure collapse&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Train accident&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Training accident&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Unidentified&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Vehicle pursuit&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Weather/Natural disaster&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;9/11 related illness&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>  .<span class="sc">$</span>cause_short <span class="sc">==</span> <span class="st">&quot;Duty related illness&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>,</span>
-<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span> <span class="sc">~</span> cause_short</span>
-<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a><span class="co">#Converting the date column from character to date class. I had tried to just use year as the x axis, but it was not specific enough and the spikes did not look as precise as did the original plot.</span></span>
-<span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>data_538_2[[<span class="st">&#39;date&#39;</span>]] <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(data_538_2[[<span class="st">&#39;date&#39;</span>]], <span class="at">format =</span> <span class="st">&quot;%Y-%m-%d&quot;</span>)</span>
-<span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co">#Changing cause_short categories to uppercase and changing the order to match the original image.</span></span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>data_538_2<span class="sc">$</span>cause_short <span class="ot">&lt;-</span> data_538_2<span class="sc">$</span>cause_short <span class="sc">%&gt;%</span> <span class="fu">toupper</span>()</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reordering the cause_short categories so they appear in the correct order in the legend on the plot.</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>data_538_order <span class="ot">&lt;-</span> data_538_2</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>data_538_order<span class="sc">$</span>cause_short <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_538_order<span class="sc">$</span>cause_short, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;GUNFIRE&quot;</span>,<span class="st">&quot;AUTOMOBILE ACCIDENT&quot;</span>,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;MOTORCYCLE ACCIDENT&quot;</span>, <span class="st">&quot;HEART ATTACK&quot;</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;VEHICULAR ASSAULT&quot;</span>,</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;STRUCK BY VEHICLE&quot;</span>, </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;GUNFIRE (ACCIDENTAL)&quot;</span>,</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;AIRCRAFT ACCIDENT&quot;</span>,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;TERRORIST ATTACK&quot;</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;OTHER&quot;</span>))</span></code></pre></div>
 <p>Now that we’ve wrangled, let’s create the actual plot.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating the plot</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>DATAPLOT <span class="ot">&lt;-</span> data_538_order <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">fill =</span> cause_short, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span> )) <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat=</span><span class="st">&quot;bin&quot;</span>, <span class="at">bins=</span><span class="dv">214</span>) <span class="sc">+</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">breaks=</span><span class="fu">c</span>(<span class="st">&quot;GUNFIRE&quot;</span>,<span class="st">&quot;AUTOMOBILE ACCIDENT&quot;</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;MOTORCYCLE ACCIDENT&quot;</span>, <span class="st">&quot;HEART ATTACK&quot;</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;VEHICULAR ASSAULT&quot;</span>,</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;STRUCK BY A VEHICLE&quot;</span>, </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;GUNFIRE (ACCIDENTAL)&quot;</span>,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;AIRCRAFT ACCIDENT&quot;</span>,</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;TERRORIST ATTACK&quot;</span>,</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>                                <span class="st">&quot;OTHER&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;On-duty police officer deaths in the U.S.&quot;</span>, <span class="at">subtitle =</span> <span class="st">&quot;By cause since 1791&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">4</span>))) <span class="sc">+</span> </span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;steelblue3&quot;</span>, <span class="st">&quot;lightblue2&quot;</span>,<span class="st">&quot;chartreuse4&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;orange&quot;</span>,<span class="st">&quot;thistle2&quot;</span>, <span class="st">&quot;black&quot;</span>,<span class="st">&quot;grey75&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>( <span class="at">legend.title =</span> <span class="fu">element_blank</span>(), <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;snow1&quot;</span>, <span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>, <span class="at">size =</span> .<span class="dv">5</span>), </span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;snow2&quot;</span>, </span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">size=</span><span class="fl">0.5</span>, <span class="at">linetype=</span><span class="st">&quot;solid&quot;</span>))</span></code></pre></div>
 <pre><code>## Scale for &#39;colour&#39; is already present. Adding another scale for &#39;colour&#39;,
 ## which will replace the existing scale.</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(DATAPLOT)</span></code></pre></div>
 <p><img src="visualization_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>There are still many problems with the plot I created. There are smaller issues like font, dimensions, border, and the inclusion of the arrow pointing to the spike in terrorist-caused deaths on 9/11. The largest issues is that the the actual data appears differently.</p>
 <p>At this point, I have shared the above graph with classmates and have gotten feedback. I’m going to take their advice and try again. Now I’m going to continue to alter the figure’s details, like changing the font of the axes to match the original.</p>
@@ -506,57 +322,14 @@ $(document).ready(function () {
 <li><p>Remove minor gridlines</p></li>
 <li><p>Make the gridline, legend, and background colors more accurate</p></li>
 </ul>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>DATAPLOT1 <span class="ot">&lt;-</span> data_538_2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.Date</span>(date), <span class="at">fill =</span> cause_short, <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span> )) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">stat=</span><span class="st">&quot;bin&quot;</span>, <span class="at">bins=</span><span class="dv">214</span>) <span class="sc">+</span> </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>() <span class="sc">+</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;On-duty police officer deaths in the U.S.&quot;</span>, </span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">&quot;By cause since 1791&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#F0F0F0&quot;</span>),</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#F0F0F0&quot;</span>),</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey86&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">4</span>))) <span class="sc">+</span> </span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;steelblue3&quot;</span>, <span class="st">&quot;lightblue2&quot;</span>,<span class="st">&quot;chartreuse4&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;orange&quot;</span>,<span class="st">&quot;thistle2&quot;</span>, <span class="st">&quot;black&quot;</span>,<span class="st">&quot;grey75&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>( <span class="at">legend.title =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>), <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">&quot;ivory&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>           </span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;grey86&quot;</span>, </span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">size=</span><span class="fl">0.5</span>, <span class="at">linetype=</span><span class="st">&quot;solid&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2001-09-11&quot;</span>), <span class="at">y =</span> <span class="dv">305</span>, <span class="at">label =</span> <span class="st">&quot;72 police</span><span class="sc">\n</span><span class="st">officers died</span><span class="sc">\n</span><span class="st">in the 9/11 </span><span class="sc">\n</span><span class="st">terrorist </span><span class="sc">\n</span><span class="st">attacks&quot;</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>) <span class="sc">+</span> <span class="co">#adding 9/11 label</span></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio=</span><span class="dv">4</span><span class="sc">/</span><span class="dv">5</span>) <span class="sc">+</span>   <span class="fu">scale_fill_manual</span>(<span class="st">&quot;&quot;</span>, </span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;GUNFIRE&quot;</span>, <span class="st">&quot;AUTOMOBILE ACCIDENT&quot;</span>,<span class="st">&quot;MOTORCYCLE ACCIDENT&quot;</span>, <span class="st">&quot;HEART ATTACK&quot;</span>, <span class="st">&quot;VEHICULAR ASSAULT&quot;</span>,<span class="st">&quot;STRUCK BY VEHICLE&quot;</span>,<span class="st">&quot;GUNFIRE (ACCIDENTAL)&quot;</span>,<span class="st">&quot;AIRCRAFT ACCIDENT&quot;</span>, <span class="st">&quot;TERRORIST ATTACK&quot;</span>,<span class="st">&quot;OTHER&quot;</span>),</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue3&quot;</span>, <span class="st">&quot;lightblue2&quot;</span>,<span class="st">&quot;chartreuse4&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;orange&quot;</span>,<span class="st">&quot;plum2&quot;</span>, <span class="st">&quot;black&quot;</span>,<span class="st">&quot;grey75&quot;</span>),</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;GUNFIRE&quot;</span>, <span class="st">&quot;AUTOMOBILE ACCIDENT&quot;</span>,<span class="st">&quot;MOTORCYCLE ACCIDENT&quot;</span>, <span class="st">&quot;HEART ATTACK&quot;</span>, <span class="st">&quot;VEHICULAR ASSAULT&quot;</span>,<span class="st">&quot;STRUCK BY VEHICLE&quot;</span>,<span class="st">&quot;GUNFIRE (ACCIDENTAL)&quot;</span>,<span class="st">&quot;AIRCRAFT ACCIDENT&quot;</span>, <span class="st">&quot;TERRORIST ATTACK&quot;</span>,<span class="st">&quot;OTHER&quot;</span>))</span></code></pre></div>
 <pre><code>## Scale for &#39;colour&#39; is already present. Adding another scale for &#39;colour&#39;,
 ## which will replace the existing scale.</code></pre>
 <pre><code>## Scale for &#39;fill&#39; is already present. Adding another scale for &#39;fill&#39;, which
 ## will replace the existing scale.</code></pre>
 <div id="final-figure-comparison" class="section level3">
 <h3>Final Figure Comparison</h3>
-<p>My figure:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(DATAPLOT1)</span></code></pre></div>
-<p><img src="visualization_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
-<p>Okay, I’m not done quite yet. I think I have not wrangled my data well enough, and that is causing problems.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#At this point, I need to sum up each death cause by year</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>data_long <span class="ot">&lt;-</span> data_538_2 <span class="sc">%&gt;%</span> <span class="fu">select</span>(year, cause_short) <span class="sc">%&gt;%</span> <span class="fu">pivot_longer</span>(</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">cols =</span> cause_short,</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">names_to =</span> <span class="st">&quot;incident&quot;</span>,</span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">values_to =</span> <span class="st">&quot;Cause&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> <span class="fu">subset</span>( <span class="at">select =</span> <span class="fu">c</span>(year, Cause)) <span class="sc">%&gt;%</span></span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(Cause, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year)</span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co">#I think I&#39;m finally getting somewhere! Let&#39;s take a peak.</span></span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(data_long)</span></code></pre></div>
+<p>My figure: <img src="visualization_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Next, I wrangle the data by adding each death cause by year.</p>
 <pre><code>## # A tibble: 1,151 x 3
 ## # Groups:   year [202]
 ##     year Cause       n
@@ -572,47 +345,12 @@ $(document).ready(function () {
 ##  9  1808 OTHER       2
 ## 10  1810 GUNFIRE     1
 ## # ... with 1,141 more rows</code></pre>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This is looking better.</span></span></code></pre></div>
-<p>Well. Now that I have PROPERLY wrangled my data, I think I can really start to make an accurate graph! Took long enough! Changes for “DATAPLOT2”</p>
+<p>Now that I have properly wrangled my data, I can really start to make an accurate graph! Took long enough!</p>
 <ul>
-<li>I’m goint to use the same code as before but with the dataset “data_long”.</li>
+<li>I’m going to use the same code as before but with the “long” data from the previous step.</li>
 <li>x = year, y = n</li>
 <li>Setting the x axis from 1800 to 2010.</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data_longx <span class="ot">=</span> data_long</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>data_longx<span class="sc">$</span>Cause <span class="ot">&lt;-</span> <span class="fu">factor</span>(data_longx<span class="sc">$</span>Cause , <span class="at">levels=</span><span class="fu">c</span>(<span class="st">&quot;OTHER&quot;</span>,<span class="st">&quot;TERRORIST ATTACK&quot;</span>, <span class="st">&quot;AIRCRAFT ACCIDENT&quot;</span>, <span class="st">&quot;GUNFIRE (ACCIDENTAL)&quot;</span>, <span class="st">&quot;STRUCK BY VEHICLE&quot;</span>, <span class="st">&quot;VEHICULAR ASSAULT&quot;</span>, <span class="st">&quot;HEART ATTACK&quot;</span>, <span class="st">&quot;MOTORCYCLE ACCIDENT&quot;</span>, <span class="st">&quot;AUTOMOBILE ACCIDENT&quot;</span>, <span class="st">&quot;GUNFIRE&quot;</span>) )</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>DATAPLOT2 <span class="ot">&lt;-</span> data_longx <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> n, <span class="at">fill =</span> Cause )) <span class="sc">+</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>() <span class="sc">+</span> </span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_discrete</span>() <span class="sc">+</span></span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;On-duty police officer deaths in the U.S.&quot;</span>, </span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">subtitle =</span> <span class="st">&quot;By cause since 1791&quot;</span>) <span class="sc">+</span> <span class="fu">theme</span>(</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>),</span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">6</span>)) <span class="sc">+</span></span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.key.size =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">&#39;cm&#39;</span>), <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#F0F0F0&quot;</span>),</span>
-<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(),</span>
-<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;#F0F0F0&quot;</span>),</span>
-<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">legend.key =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;grey86&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">4</span>))) <span class="sc">+</span>   <span class="fu">scale_fill_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&quot;grey75&quot;</span>, <span class="st">&quot;black&quot;</span>, <span class="st">&quot;thistle2&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;salmon&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>,<span class="st">&quot;chartreuse4&quot;</span>, <span class="st">&quot;lightblue2&quot;</span>, <span class="st">&quot;steelblue3&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>( <span class="at">legend.title =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.major =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">&quot;grey&quot;</span>), <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">color =</span> <span class="st">&quot;ivory&quot;</span>)) <span class="sc">+</span> </span>
-<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill=</span><span class="st">&quot;grey86&quot;</span>, </span>
-<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">size=</span><span class="fl">0.5</span>, <span class="at">linetype=</span><span class="st">&quot;solid&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="at">geom =</span> <span class="st">&quot;text&quot;</span>,</span>
-<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">2001</span>, </span>
-<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> <span class="dv">285</span>, </span>
-<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&quot;72 police</span><span class="sc">\n</span><span class="st">officers died</span><span class="sc">\n</span><span class="st">in the 9/11 </span><span class="sc">\n</span><span class="st">terrorist </span><span class="sc">\n</span><span class="st">attacks&quot;</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>,</span>
-<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>           <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="co">#adding 9/11 label</span></span>
-<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">aspect.ratio=</span><span class="dv">4</span><span class="sc">/</span><span class="dv">5</span>)  <span class="sc">+</span></span>
-<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="st">&quot;&quot;</span>, </span>
-<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">breaks =</span> <span class="fu">c</span>(<span class="st">&quot;GUNFIRE&quot;</span>, <span class="st">&quot;AUTOMOBILE ACCIDENT&quot;</span>,<span class="st">&quot;MOTORCYCLE ACCIDENT&quot;</span>, <span class="st">&quot;HEART ATTACK&quot;</span>, <span class="st">&quot;VEHICULAR ASSAULT&quot;</span>,<span class="st">&quot;STRUCK BY VEHICLE&quot;</span>,<span class="st">&quot;GUNFIRE (ACCIDENTAL)&quot;</span>,<span class="st">&quot;AIRCRAFT ACCIDENT&quot;</span>, <span class="st">&quot;TERRORIST ATTACK&quot;</span>,<span class="st">&quot;OTHER&quot;</span>),</span>
-<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;steelblue3&quot;</span>, <span class="st">&quot;lightblue2&quot;</span>,<span class="st">&quot;chartreuse4&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>,<span class="st">&quot;red&quot;</span>, <span class="st">&quot;salmon&quot;</span>, <span class="st">&quot;orange&quot;</span>,<span class="st">&quot;plum2&quot;</span>, <span class="st">&quot;black&quot;</span>,<span class="st">&quot;grey75&quot;</span>),</span>
-<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>                                                <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;GUNFIRE&quot;</span>, <span class="st">&quot;AUTOMOBILE ACCIDENT&quot;</span>,<span class="st">&quot;MOTORCYCLE ACCIDENT&quot;</span>, <span class="st">&quot;HEART ATTACK&quot;</span>, <span class="st">&quot;VEHICULAR ASSAULT&quot;</span>,<span class="st">&quot;STRUCK BY VEHICLE&quot;</span>,<span class="st">&quot;GUNFIRE (ACCIDENTAL)&quot;</span>,<span class="st">&quot;AIRCRAFT ACCIDENT&quot;</span>, <span class="st">&quot;TERRORIST ATTACK&quot;</span>,<span class="st">&quot;OTHER&quot;</span>))  </span></code></pre></div>
 <pre><code>## Scale for &#39;colour&#39; is already present. Adding another scale for &#39;colour&#39;,
 ## which will replace the existing scale.</code></pre>
 <pre><code>## Scale for &#39;fill&#39; is already present. Adding another scale for &#39;fill&#39;, which
@@ -621,13 +359,11 @@ $(document).ready(function () {
 <div id="final-product-comparison" class="section level3">
 <h3>FINAL PRODUCT COMPARISON!</h3>
 <p>I think this is as close as it is going to get, and I’m feeling much better about the product. The key difference was using the factor function to change the stacking of the different areas and to use the dodge position instead of bins. Using the “scale_fill_manual” function was also incredibly helpful. To achieve this last visual I did end up wrangling more, using the functions “pivot_longer()”, “group_by()”, and “count()”. I am not sure if this ended up being necessary, but I learned a lot in the process.</p>
-<p>Dr. Handel and my peers were making suggestions that ultimately proved correct, namely changing the stacking of the areas. I am not surprised that they were correct, but I am surprised it took so long for me to understand what they meant. With trial and error, their advice became much more clear. I’m grateful to have such a perceptive team to offer their guidance!</p>
+<p>Dr. Handel and my peers were making suggestions that ultimately proved correct, namely changing the stacking of the areas. I am not surprised that they were correct. With trial and error, their advice became much more clear. I’m grateful to have such a perceptive team to offer their guidance!</p>
 <p>Here is my final product and the comparison to the original:</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(DATAPLOT2)</span></code></pre></div>
 <p><img src="visualization_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Original Figure:</p>
 <p><img src="images/original_538.png" style="width:50.0%" /></p>
-<p><img src="here::here(%22images%22,%20%22original_538.png%22)" /></p>
 </div>
 
 

@@ -18,7 +18,7 @@ I will attempt to recreate the following graph:
 
 Load Libraries.
 
-```{r}
+```{r, echo=F}
 #load libraries
 library(tidyverse)
 library(ggplot2)
@@ -29,7 +29,7 @@ library(extrafont) #I found this package and it can be used to change fonts.
 
 
 Load data.
-```{r}
+```{r, echo=F}
 
 #Load data
 data_location <- here::here("data", "clean_data_538.csv")
@@ -41,7 +41,7 @@ data_538 <- read.csv(data_location)
 
 
 Let's start recreating this plot using ggplot2.
-```{r}
+```{r, echo=F}
 
 data_538[['date']] <- as.POSIXct(data_538[['date']], format = "%Y-%m-%d")
 #^this is to convert the date category to an R friendly format.
@@ -54,7 +54,7 @@ data_538 %>% ggplot(aes(x = date, fill = cause_short )) +
  
  
 Here is another attempt only using the categories on the original figure, excluding the other category.
-```{r}
+```{r, echo=F}
 
 data_538[['date']] <- as.POSIXct(data_538[['date']], format = "%Y-%m-%d")
 
@@ -73,9 +73,9 @@ As previously stated, there are too many categories, so we have to refine the li
 
 It looks like we have a lot of wrangling and cleaning up to do.
 
-First, I am putting any cause that is not one of the listed causes into a separate "other" category. Next, I will reclassify the date column from column to dates. Then, I will change all the cause_short names so they are all capitalized like in the original image. I reorder the causes so they appear in the correct order on the legend. Then comes plotting!
+First, I am putting any cause that is not one of the listed causes into a separate "other" category. Next, I will reclassify the date column from column to dates. Then, I will change all the cause_short names so they are all capitalized like in the original image. I reorder the causes so they appear in the correct order on the legend. Then comes plotting! 
 
-```{r}
+```{r, echo=F}
 #Creating "other" category from extra death causes
 data_538_2 <- data_538 %>% mutate(cause_short = case_when(
   .$cause_short == "Accidental" ~ "Other",
@@ -120,7 +120,7 @@ data_538_2$cause_short <- data_538_2$cause_short %>% toupper()
 
 ```
 
-```{r}
+```{r, echo=F}
 #Reordering the cause_short categories so they appear in the correct order in the legend on the plot.
 data_538_order <- data_538_2
 data_538_order$cause_short <- factor(data_538_order$cause_short, levels = c("GUNFIRE","AUTOMOBILE ACCIDENT",
@@ -135,7 +135,7 @@ data_538_order$cause_short <- factor(data_538_order$cause_short, levels = c("GUN
 
 
 Now that we've wrangled, let's create the actual plot.
-```{r}
+```{r, echo=F}
 
 #Creating the plot
 DATAPLOT <- data_538_order %>% ggplot(aes(x = date, fill = cause_short, position = "dodge" )) +
@@ -180,7 +180,7 @@ Here are some of the changes I plan to make:
 * Make the gridline, legend, and background colors more accurate
 
 
-```{r}
+```{r, echo=F}
 
 DATAPLOT1 <- data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, position = "dodge" )) +
   geom_area(stat="bin", bins=214) + 
@@ -212,14 +212,14 @@ DATAPLOT1 <- data_538_2 %>% ggplot(aes(x = as.Date(date), fill = cause_short, po
 ```
 ### Final Figure Comparison
 My figure:
-```{r}
+```{r, echo=F}
 print(DATAPLOT1)
 ```
 
 
-Okay, I'm not done quite yet. I think I have not wrangled my data well enough, and that is causing problems. 
+Next, I wrangle the data by adding each death cause by year.
 
-```{r}
+```{r, echo=F}
 
 library(tidyr)
 
@@ -240,15 +240,14 @@ print(data_long)
 #This is looking better.
 ```
 
-Well. Now that I have PROPERLY wrangled my data, I think I can really start to make an accurate graph! Took long enough! 
-Changes for "DATAPLOT2"
+Now that I have properly wrangled my data, I can really start to make an accurate graph! Took long enough! 
 
-* I'm goint to use the same code as before but with the dataset "data_long".
+* I'm going to use the same code as before but with the "long" data from the previous step.
 * x = year, y = n
 * Setting the x axis from 1800 to 2010.
 
 
-```{r}
+```{r, echo=F}
  
 data_longx = data_long
 
@@ -292,11 +291,11 @@ DATAPLOT2 <- data_longx %>% ggplot(aes(x = year, y = n, fill = Cause )) +
 
 I think this is as close as it is going to get, and I'm feeling much better about the product. The key difference was using the factor function to change the stacking of the different areas and to use the dodge position instead of bins. Using the "scale_fill_manual" function was also incredibly helpful. To achieve this last visual I did end up wrangling more, using the functions "pivot_longer()", "group_by()", and "count()". I am not sure if this ended up being necessary, but I learned a lot in the process. 
 
-Dr. Handel and my peers were making suggestions that ultimately proved correct, namely changing the stacking of the areas. I am not surprised that they were correct, but I am surprised it took so long for me to understand what they meant. With trial and error, their advice became much more clear. I'm grateful to have such a perceptive team to offer their guidance!
+Dr. Handel and my peers were making suggestions that ultimately proved correct, namely changing the stacking of the areas. I am not surprised that they were correct. With trial and error, their advice became much more clear. I'm grateful to have such a perceptive team to offer their guidance!
 
 Here is my final product and the comparison to the original:
 
-```{r}
+```{r, echo=F}
 
 print(DATAPLOT2)
 
@@ -306,5 +305,4 @@ Original Figure:
 
 ![ ](/Users/algla/OneDrive/Desktop/MADA/AMANDAGLATTER-MADA-portfolio/images/original_538.png){width=50%}
 
-![](here::here("images", "original_538.png"))
 
